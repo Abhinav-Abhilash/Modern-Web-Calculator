@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Glassmorphism Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="dark-theme">
+    <!-- Animated background wrapper -->
+    <div class="bg-animation"></div>
+
+    <main class="app-container">
+        <!-- Main Calculator UI -->
+        <div class="calculator glass-panel">
+            <!-- Header (Toggles) -->
+            <header class="calc-header">
+                <button id="themeToggle" class="icon-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                    <i data-lucide="sun"></i>
+                </button>
+                <button id="soundToggle" class="icon-btn active" title="Toggle Sound" aria-label="Toggle Sound">
+                    <i data-lucide="volume-2"></i>
+                </button>
+                <div class="spacer"></div>
+                <button id="sciToggle" class="text-btn" title="Scientific Mode">SCI</button>
+                <button id="historyToggle" class="icon-btn" title="History" aria-label="Toggle History">
+                    <i data-lucide="history"></i>
+                </button>
+            </header>
+
+            <!-- Display -->
+            <div class="calc-display">
+                <div class="expression" id="expressionDisplay"></div>
+                <div class="result-container">
+                    <span class="operator-indicator" id="operatorIndicator"></span>
+                    <div class="main-result" id="resultDisplay">0</div>
+                </div>
+            </div>
+
+            <!-- Extended Scientific Keypad (Hidden by default) -->
+            <div class="keypad-scientific hidden" id="scientificKeypad">
+                <button class="btn btn-sci" data-action="sin">sin</button>
+                <button class="btn btn-sci" data-action="cos">cos</button>
+                <button class="btn btn-sci" data-action="tan">tan</button>
+                <button class="btn btn-sci" data-action="deg-rad" id="degRadToggle">DEG</button>
+                
+                <button class="btn btn-sci" data-action="log">log</button>
+                <button class="btn btn-sci" data-action="ln">ln</button>
+                <button class="btn btn-sci" data-action="sqrt">√</button>
+                <button class="btn btn-sci" data-action="square">x²</button>
+                
+                <button class="btn btn-sci" data-action="power">xʸ</button>
+                <button class="btn btn-sci" data-action="pi">π</button>
+                <button class="btn btn-sci" data-action="e">e</button>
+                <button class="btn btn-sci" data-action="factorial">x!</button>
+                
+                <button class="btn btn-sci" data-action="open-paren">(</button>
+                <button class="btn btn-sci" data-action="close-paren">)</button>
+                <button class="btn btn-sci empty" disabled></button>
+                <button class="btn btn-sci empty" disabled></button>
+            </div>
+
+            <!-- Standard Keypad -->
+            <div class="keypad-standard">
+                <button class="btn btn-action" data-action="clear" id="clearBtn">AC</button>
+                <button class="btn btn-action" data-action="backspace"><i data-lucide="delete"></i></button>
+                <button class="btn btn-action" data-action="percent">%</button>
+                <button class="btn btn-operator" data-action="divide">÷</button>
+                
+                <button class="btn btn-number" data-number="7">7</button>
+                <button class="btn btn-number" data-number="8">8</button>
+                <button class="btn btn-number" data-number="9">9</button>
+                <button class="btn btn-operator" data-action="multiply">×</button>
+                
+                <button class="btn btn-number" data-number="4">4</button>
+                <button class="btn btn-number" data-number="5">5</button>
+                <button class="btn btn-number" data-number="6">6</button>
+                <button class="btn btn-operator" data-action="subtract">-</button>
+                
+                <button class="btn btn-number" data-number="1">1</button>
+                <button class="btn btn-number" data-number="2">2</button>
+                <button class="btn btn-number" data-number="3">3</button>
+                <button class="btn btn-operator" data-action="add">+</button>
+                
+                <button class="btn btn-action" data-action="plus-minus">±</button>
+                <button class="btn btn-number" data-number="0">0</button>
+                <button class="btn btn-number" data-number=".">.</button>
+                <button class="btn btn-equals" data-action="equals">=</button>
+            </div>
+        </div>
+
+        <!-- History Panel -->
+        <aside class="history-panel glass-panel hidden" id="historyPanel">
+            <header class="history-header">
+                <h2>History</h2>
+                <button id="clearHistoryBtn" class="icon-btn" title="Clear History">
+                    <i data-lucide="trash-2"></i>
+                </button>
+            </header>
+            <div class="history-list" id="historyList">
+                <!-- History items will be injected here -->
+                <div class="history-empty">No history yet</div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Toast Notification (for Copy to Clipboard) -->
+    <div id="toast" class="toast hidden">Copied to clipboard!</div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
